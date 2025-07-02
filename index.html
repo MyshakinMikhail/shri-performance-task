@@ -11,21 +11,21 @@
             type="font/woff2"
             crossorigin="anonymous"
         />
-        <script src="src/vendors/react-with-dom.js" type="module"></script>
+        <script src="vendors/react-with-dom.js" type="module" defer></script>
         <link
             rel="preload"
-            href="src/styles.css"
+            href="styles.css"
             as="style"
             onload="this.rel='stylesheet'"
         />
         <noscript>
-            <link rel="stylesheet" href="src/styles.css" />
+            <link rel="stylesheet" href="styles.css" />
         </noscript>
     </head>
     <body>
         <div id="root"></div>
-        <script type="module" src="/src/main.jsx"></script>
-        <script src="src/vendors/babel.min.js" type="module"></script>
+        <script type="module" src="/main.jsx"></script>
+        <script src="vendors/babel.min.js" type="module" defer></script>
         <footer class="footer">
             <ul class="footer__list">
                 <li class="footer__item">
