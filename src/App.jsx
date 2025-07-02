@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./fonts.css";
+import "./reset.css";
 import "./styles.css";
 
 export function Footer() {
