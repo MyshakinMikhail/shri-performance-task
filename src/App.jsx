@@ -272,7 +272,6 @@ export function Main() {
         setActiveTab(event.target.value);
     };
 
-    let sizes = [];
     const onSize = (size) => {
         sizesRef.current = [...sizesRef.current, size];
         updateHasRightScroll();
