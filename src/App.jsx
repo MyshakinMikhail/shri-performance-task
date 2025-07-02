@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import "./fonts.css";
+// import "./fonts.css";
+// import "./reset.css";
 import "./styles.css";
 
 export function Footer() {
@@ -254,6 +255,7 @@ const TABS_KEYS = Object.keys(TABS);
 export function Main() {
     const ref = useRef();
     const initedRef = useRef(false);
+    const sizesRef = useRef([]);
     const [activeTab, setActiveTab] = useState("");
     const [hasRightScroll, setHasRightScroll] = useState(false);
 
@@ -264,24 +266,31 @@ export function Main() {
                 new URLSearchParams(location.search).get("tab") || "all"
             );
         }
-    });
+    }, []);
 
     const onSelectInput = (event) => {
         setActiveTab(event.target.value);
     };
 
-    let sizes = [];
     const onSize = (size) => {
-        sizes = [...sizes, size];
+        sizesRef.current = [...sizesRef.current, size];
+        updateHasRightScroll();
     };
-
-    useEffect(() => {
-        const sumWidth = sizes.reduce((acc, item) => acc + item.width, 0);
+    const updateHasRightScroll = () => {
+        if (!ref.current) return;
+        const sumWidth = sizesRef.current.reduce(
+            (acc, item) => acc + item.width,
+            0
+        );
         const newHasRightScroll = sumWidth > ref.current.offsetWidth;
         if (newHasRightScroll !== hasRightScroll) {
             setHasRightScroll(newHasRightScroll);
         }
-    }, []);
+    };
+
+    useEffect(() => {
+        updateHasRightScroll();
+    }, [ref.current]);
 
     const onArrowCLick = () => {
         const scroller = ref.current.querySelector(
